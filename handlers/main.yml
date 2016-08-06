@@ -1,0 +1,7 @@
+---
+# handlers file for hswong3i.gluster
+
+- name: restart gluster
+  service:
+    name: "glusterfs-server"
+    state: "restarted"
