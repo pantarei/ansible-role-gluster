@@ -1,0 +1,12 @@
+---
+# vars file for hswong3i.gluster (xenial)
+
+_apt_repository: [
+  { state: "present", repo: "ppa:gluster/glusterfs-3.8" }
+]
+_apt: [
+  { state: "latest", name: "glusterfs-client" },
+  { state: "latest", name: "glusterfs-server" },
+  { state: "latest", name: "lvm2" },
+  { state: "latest", name: "xfsprogs" },
+]
