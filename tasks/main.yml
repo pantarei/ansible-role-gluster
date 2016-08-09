@@ -1,23 +1,22 @@
 ---
 # tasks file for hswong3i.gluster
 
+- name: include release specific variables
+  include_vars: "{{ ansible_distribution_release }}.yml"
+  tags: hswong3i.gluster
+
 - name: apt-add-repository
   apt_repository:
     repo: "{{ item.repo }}"
     state: "{{ item.state }}"
-  with_items:
-    - { state: "present", repo: "ppa:gluster/glusterfs-3.8" }
+  with_items: "{{ _apt_repository }}"
   tags: hswong3i.gluster
 
 - name: apt-get install
   apt:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
-  with_items:
-    - { state: "latest", name: "glusterfs-client" }
-    - { state: "latest", name: "glusterfs-server" }
-    - { state: "latest", name: "lvm2" }
-    - { state: "latest", name: "xfsprogs" }
+  with_items: "{{ _apt }}"
   notify: restart gluster
   tags: hswong3i.gluster
 
