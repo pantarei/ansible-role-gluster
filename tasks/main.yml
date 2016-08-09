@@ -16,34 +16,10 @@
   with_items:
     - { state: "latest", name: "glusterfs-client" }
     - { state: "latest", name: "glusterfs-server" }
+    - { state: "latest", name: "lvm2" }
+    - { state: "latest", name: "xfsprogs" }
   notify: restart gluster
   tags: hswong3i.gluster
-
-#- name: prepare files
-#  file:
-#    dest: "{{ item.dest }}"
-#    owner: "{{ item.owner }}"
-#    group: "{{ item.group }}"
-#    mode: "{{ item.mode }}"
-#    state: "directory"
-#  with_items: "{{ gluster_exports }}"
-#  notify: restart gluster
-#  tags: hswong3i.gluster
-#
-#- name: copy templates
-#  template:
-#    src: "{{ item.src }}"
-#    dest: "{{ item.dest }}"
-#    owner: "{{ item.owner }}"
-#    group: "{{ item.group }}"
-#    mode: "{{ item.mode }}"
-#  with_items:
-#    - { src: "etc/default/gluster-common.j2", dest: "/etc/default/gluster-common", owner: "root", group: "root", mode: "0644" }
-#    - { src: "etc/default/gluster-kernel-server.j2", dest: "/etc/default/gluster-kernel-server", owner: "root", group: "root", mode: "0644" }
-#    - { src: "etc/exports.j2", dest: "/etc/exports", owner: "root", group: "root", mode: "0644" }
-#    - { src: "etc/idmapd.conf.j2", dest: "/etc/idmapd.conf", owner: "root", group: "root", mode: "0644" }
-#  notify: restart gluster
-#  tags: hswong3i.gluster
 
 - name: enable service
   service:
