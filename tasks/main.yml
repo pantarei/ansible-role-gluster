@@ -19,6 +19,13 @@
   with_items: "{{ _apt }}"
   tags: hswong3i.gluster
 
+- name: enable service
+  service:
+    name: "rpcbind"
+    state: "started"
+    enabled: "yes"
+  tags: hswong3i.gluster
+
 - name: disable service start on boot
   service:
     name: "glusterfs-server"

@@ -8,5 +8,6 @@ _apt: [
   { state: "latest", name: "glusterfs-client" },
   { state: "latest", name: "glusterfs-server" },
   { state: "latest", name: "lvm2" },
+  { state: "latest", name: "rpcbind" },
   { state: "latest", name: "xfsprogs" },
 ]
