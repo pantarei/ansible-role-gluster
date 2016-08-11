@@ -17,12 +17,10 @@
     name: "{{ item.name }}"
     state: "{{ item.state }}"
   with_items: "{{ _apt }}"
-  notify: restart gluster
   tags: hswong3i.gluster
 
-- name: enable service
+- name: disable service start on boot
   service:
     name: "glusterfs-server"
-    enabled: "yes"
-  notify: restart gluster
+    enabled: "no"
   tags: hswong3i.gluster
