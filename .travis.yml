@@ -15,13 +15,6 @@ before_install:
   - sudo apt-get update
   - sudo apt-get -y install ansible
 
-before_script:
-  - sudo apt-get install -y lvm2
-  - sudo dd if=/dev/zero of=/tmp/gluster-volumes bs=1G count=1
-  - sudo losetup /dev/loop0 /tmp/gluster-volumes
-  - sudo pvcreate /dev/loop0
-  - sudo vgcreate gluster-volumes /dev/loop0
-
 script:
   - sudo ansible-playbook tests/test.yml -i tests/hosts --syntax-check
   - sudo ansible-playbook tests/test.yml -i tests/hosts

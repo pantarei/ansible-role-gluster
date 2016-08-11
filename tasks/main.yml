@@ -17,70 +17,10 @@
     name: "{{ item.name }}"
     state: "{{ item.state }}"
   with_items: "{{ _apt }}"
-  notify: restart gluster
   tags: hswong3i.gluster
 
-- name: enable service
+- name: disable service start on boot
   service:
     name: "glusterfs-server"
-    enabled: "yes"
-  notify: restart gluster
-  tags: hswong3i.gluster
-
-- name: create LV from VG
-  lvol:
-    vg: "{{ gluster_group }}"
-    lv: "{{ gluster_prefix}}{{ item.name }}"
-    size: "{{ item.size }}"
-  with_items: "{{ gluster_volume }}"
-  notify: restart gluster
-  tags: hswong3i.gluster
-
-- name: format LV with xfs
-  filesystem:
-    dev: "/dev/{{ gluster_group }}/{{ gluster_prefix}}{{ item.name }}"
-    fstype: "xfs"
-    opts: "-i size=512 -n size=8192"
-  with_items: "{{ gluster_volume }}"
-  notify: restart gluster
-  tags: hswong3i.gluster
-
-- name: mount LV as brick
-  mount:
-    name: "/srv/gluster/{{ item.name }}"
-    src: "/dev/{{ gluster_group }}/{{ gluster_prefix}}{{ item.name }}"
-    fstype: "xfs"
-    opts: "defaults,inode64,nobarrier"
-    state: "mounted"
-  with_items: "{{ gluster_volume }}"
-  notify: restart gluster
-  tags: hswong3i.gluster
-
-- name: create brick folder
-  file:
-    dest: "/srv/gluster/{{ item.name }}/brick"
-    owner: "root"
-    group: "root"
-    mode: "0755"
-    state: "directory"
-  with_items: "{{ gluster_volume }}"
-  notify: restart gluster
-  tags: hswong3i.gluster
-
-- name: create gluster volume
-  gluster_volume:
-    name: "{{ item.name }}"
-    bricks: "/srv/gluster/{{ item.name }}/brick"
-    cluster: "{{ play_hosts | join(',') }}"
-    replicas: "{{ item.replicas | default(None) or omit }}"
-    stripes: "{{ item.stripes | default(None) or omit }}"
-    disperses: "{{ item.disperses | default(None) or omit }}"
-    redundancies: "{{ item.redundancies | default(None) or omit }}"
-    options: "{{ item.options | default(None) or omit }}"
-    start_on_create: "no"
-    state: "present"
-  with_items: "{{ gluster_volume }}"
-  when: play_hosts | length > 1
-  run_once: yes
-  notify: restart gluster
+    enabled: "no"
   tags: hswong3i.gluster
