@@ -1,0 +1,18 @@
+# {{ ansible_managed }}
+
+volume management
+    type mgmt/glusterd
+    option event-threads                        {{ gluster_event_threads }}
+    option performance.cache-max-file-size      {{ gluster_performance_cache_max_file_size }}
+    option performance.cache-refresh-timeout    {{ gluster_performance_cache_refresh_timeout }}
+    option performance.cache-size               {{ gluster_performance_cache_size }}
+    option performance.io-thread-count          {{ gluster_performance_io_thread_count }}
+    option performance.read-ahead               {{ gluster_performance_read_ahead }}
+    option performance.write-behind-window-size {{ gluster_performance_write_behind_window_size }}
+    option ping-timeout                         0
+    option transport-type                       socket,rdma
+    option transport.socket.keepalive-interval  2
+    option transport.socket.keepalive-time      10
+    option transport.socket.read-fail-log       off
+    option working-directory                    /var/lib/glusterd
+end-volume

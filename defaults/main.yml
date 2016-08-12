@@ -1,2 +1,10 @@
 ---
 # defaults file for hswong3i.gluster
+
+gluster_event_threads: "3"
+gluster_performance_cache_max_file_size: "2MB"
+gluster_performance_cache_refresh_timeout: "1"
+gluster_performance_cache_size: "256MB"
+gluster_performance_io_thread_count: "32"
+gluster_performance_read_ahead: "off"
+gluster_performance_write_behind_window_size: "4M"
