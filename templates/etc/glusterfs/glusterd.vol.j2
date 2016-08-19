@@ -3,6 +3,7 @@
 volume management
     type mgmt/glusterd
     option event-threads                        {{ gluster_event_threads }}
+    option features.cache-invalidation          {{ gluster_features_cache_invalidation }}
     option performance.cache-max-file-size      {{ gluster_performance_cache_max_file_size }}
     option performance.cache-refresh-timeout    {{ gluster_performance_cache_refresh_timeout }}
     option performance.cache-size               {{ gluster_performance_cache_size }}
