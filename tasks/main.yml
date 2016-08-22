@@ -17,6 +17,7 @@
     name: "{{ item.name }}"
     state: "{{ item.state }}"
   with_items: "{{ _apt }}"
+  notify: restart gluster
   tags: hswong3i.gluster
 
 - name: copy templates
@@ -28,6 +29,7 @@
     mode: "{{ item.mode }}"
   with_items:
     - { src: "etc/glusterfs/glusterd.vol.j2", dest: "/etc/glusterfs/glusterd.vol", owner: "root", group: "root", mode: "0644" }
+  notify: restart gluster
   tags: hswong3i.gluster
 
 - name: enable service
@@ -36,4 +38,5 @@
     enabled: "{{ item.enabled }}"
   with_items:
     - { name: "glusterfs-server", enabled: "yes" }
+  notify: restart gluster
   tags: hswong3i.gluster
