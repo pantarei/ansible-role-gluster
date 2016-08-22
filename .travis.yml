@@ -18,11 +18,8 @@ before_install:
 before_script:
   - sudo apt-get -y install mlocate
   - sudo updatedb
-  - locate -r 'ansible/modules/extras$' -n 1
   - cd `locate -r 'ansible/modules/extras$' -n 1`
-  - ls -la $TRAVIS_BUILD_DIR/tests/gluster_volume_disperse.patch
-  - patch -p1 $TRAVIS_BUILD_DIR/tests/gluster_volume_disperse.patch
-  - echo $TRAVIS_BUILD_DIR
+  - cat $TRAVIS_BUILD_DIR/tests/gluster_volume_disperse.patch | patch -p1
   - cd $TRAVIS_BUILD_DIR
 
 script:
