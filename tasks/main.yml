@@ -30,10 +30,10 @@
     - { src: "etc/glusterfs/glusterd.vol.j2", dest: "/etc/glusterfs/glusterd.vol", owner: "root", group: "root", mode: "0644" }
   tags: hswong3i.gluster
 
-- name: disable service start on boot
+- name: enable service
   service:
     name: "{{ item.name }}"
     enabled: "{{ item.enabled }}"
   with_items:
-    - { name: "glusterfs-server", enabled: "no" }
+    - { name: "glusterfs-server", enabled: "yes" }
   tags: hswong3i.gluster
