@@ -15,6 +15,11 @@ before_install:
   - sudo apt-get update
   - sudo apt-get -y install ansible
 
+before_script:
+  - cd `locate -r 'ansible/modules/extras$' -n 1`
+  - patch -p1 $TRAVIS_BUILD_DIR/tests/gluster_volume_disperse.patch
+  - cd $TRAVIS_BUILD_DIR
+
 script:
   - sudo ansible-playbook tests/test.yml -i tests/hosts --syntax-check
   - sudo ansible-playbook tests/test.yml -i tests/hosts
