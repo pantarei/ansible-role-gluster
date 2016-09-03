@@ -2,12 +2,18 @@
 # vars file for hswong3i.gluster (trusty)
 
 _apt_repository: [
-  { state: "present", repo: "ppa:gluster/glusterfs-3.8" }
+  { state: "absent", repo: "ppa:gluster/glusterfs-3.4" },
+  { state: "absent", repo: "ppa:gluster/glusterfs-3.5" },
+  { state: "absent", repo: "ppa:gluster/glusterfs-3.6" },
+  { state: "absent", repo: "ppa:gluster/glusterfs-3.8" },
+  { state: "present", repo: "ppa:gluster/glusterfs-3.7" },
 ]
 _apt: [
   { state: "latest", name: "glusterfs-client" },
+  { state: "latest", name: "glusterfs-common" },
   { state: "latest", name: "glusterfs-server" },
   { state: "latest", name: "lvm2" },
+  { state: "latest", name: "nfs-common" },
   { state: "latest", name: "rpcbind" },
   { state: "latest", name: "xfsprogs" },
 ]
