@@ -2,7 +2,9 @@
 
 volume management
     type mgmt/glusterd
-    option event-threads                        {{ gluster_event_threads }}
+    option client.event-threads                 {{ gluster_client_event_threads }}
+    option diagnostics.brick-log-level          {{ gluster_diagnostics_brick_log_level }}
+    option diagnostics.client-log-level         {{ gluster_diagnostics_client_log_level }}
     option features.cache-invalidation          {{ gluster_features_cache_invalidation }}
     option nfs.disable                          {{ gluster_nfs_disable }}
     option performance.cache-max-file-size      {{ gluster_performance_cache_max_file_size }}
@@ -12,6 +14,7 @@ volume management
     option performance.read-ahead               {{ gluster_performance_read_ahead }}
     option performance.write-behind-window-size {{ gluster_performance_write_behind_window_size }}
     option ping-timeout                         0
+    option server.event-threads                 {{ gluster_server_event_threads }}
     option transport-type                       socket,rdma
     option transport.socket.keepalive-interval  2
     option transport.socket.keepalive-time      10
