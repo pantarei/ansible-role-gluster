@@ -17,5 +17,6 @@ _apt: [
   { state: "latest", name: "lvm2" },
   { state: "latest", name: "nfs-common" },
   { state: "latest", name: "rpcbind" },
+  { state: "latest", name: "thin-provisioning-tools" },
   { state: "latest", name: "xfsprogs" },
 ]
